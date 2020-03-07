@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Post;
-use Illuminate\Http\Request;
 
-class PostsController extends Controller
+use Illuminate\Http\Request;
+use App\Category;
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.category.index')->with('categories', Category::all());
     }
 
     /**
@@ -23,7 +23,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -34,18 +34,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'featured' => 'required|image',
-            'content' => 'required'
+        $this->validate($request,[
+            'name' => 'required'
         ]);
-
-        $post = new Post;
-        $post->title = $request->title;
-        $post->featured = $request->featured;
-        $post->content = $request->content;
-        $post->save();
-        return redirect()->back();
+       $category = new Category;
+       $category->name = $request->name;
+       $category->save();
+       return redirect()->back();
     }
 
     /**
@@ -67,7 +62,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.category');
     }
 
     /**
@@ -90,6 +85,6 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('admin.category');
     }
 }
