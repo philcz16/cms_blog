@@ -17,10 +17,10 @@
                     <tr>
                         <td>{{$category->name}}</td>
                         <td><a href="{{route('category.edit',['id' => $category->id])}}" class="btn btn-info btn-xs">
-                        <span class="glyphicon glyphicon-pencil"></span>
+                        Edit
                         </a></td>
-                        <td><a href="{{route('category.delete', ['id'=>$category->id])}}" class="btn btn-info btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
+                        <td><a href="{{route('category.delete', ['id'=>$category->id])}}" class="btn btn-danger btn-xs">
+                        Delete
                         </a></td>
                     </tr>
                 @endforeach

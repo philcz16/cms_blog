@@ -40,7 +40,7 @@ class CategoriesController extends Controller
        $category = new Category;
        $category->name = $request->name;
        $category->save();
-       return redirect()->back();
+       return redirect()->route('category');
     }
 
     /**
@@ -62,7 +62,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.category');
+       $category = Category::find($id);
+       return view('admin.category.edit')->with('category', $category);
     }
 
     /**
@@ -74,7 +75,13 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+
+        $category->save();
+
+        return redirect()->route('category');
     }
 
     /**
@@ -85,6 +92,8 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        return view('admin.category');
+       $category = Category::find($id);
+       $category->delete();
+       return redirect()->route('category');
     }
 }
