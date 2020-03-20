@@ -14,7 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('admin.post.index')->with('posts',$posts);
     }
 
     /**
@@ -48,7 +49,7 @@ class PostsController extends Controller
         $post->category_id = $request->category_id;
         $post->featured = $request->featured;
         $post->save();
-        return redirect()->back();
+        return redirect()->route('posts');
     }
 
     /**
@@ -70,7 +71,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('admin.post.edit')->with('post',$post);
     }
 
     /**
@@ -93,6 +95,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('posts');
     }
 }
