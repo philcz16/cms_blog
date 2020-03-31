@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Session;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
@@ -43,12 +44,16 @@ class PostsController extends Controller
             'category_id' => 'required'
         ]);
 
-        $post = new Post;
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->category_id = $request->category_id;
-        $post->featured = $request->featured;
-        $post->save();
+        $featured = $request->featured;
+        $featured_new_name = time().$featured->getClientOriginalName();
+        $featured->move('uploads/posts', $featured_new_name);
+        $post = Post::create([
+        'title' => $request->title,
+        'content' => $request->content,
+        'featured' => 'upoloads/posts'.$featured_new_name,
+        'category_id' => $request->category_id
+        ]);
+        Session::flash('success', 'Post create successfully');
         return redirect()->route('posts');
     }
 

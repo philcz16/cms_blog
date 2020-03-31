@@ -24,6 +24,19 @@
                 <label for="content">Post</label>
                 <textarea name="content" id="content" cols="10"  rows="5" class="form-control">{{$post->content}}</textarea>
             </div>
+            <div class="form-group">
+                <label for="category">Select Category</label>
+                
+                <select id="" name="category_id" class="form-control">
+                @foreach($categories as $category)
+               <option value="{{$category->id}}">
+               {{$category->name}}
+               </option>
+               @endforeach
+                </select>
+                
+               
+            </div>
             
             <div class="form-group">
                 <div class="text-center">
