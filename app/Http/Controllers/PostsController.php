@@ -26,6 +26,12 @@ class PostsController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
+        Session::flash('info', 'No categories created, Create Categories before creating posts.');
+        if ($categories->count()==0){
+            return redirect()->back();
+
+        }
         return view('admin.post.create')->with('categories', Category::all());
     }
 
@@ -50,7 +56,7 @@ class PostsController extends Controller
         $post = Post::create([
         'title' => $request->title,
         'content' => $request->content,
-        'featured' => 'upoloads/posts'.$featured_new_name,
+        'featured' => 'uploads/posts'.$featured_new_name,
         'category_id' => $request->category_id
         ]);
         Session::flash('success', 'Post create successfully');
@@ -77,7 +83,8 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('admin.post.edit')->with('post',$post);
+        $category = Category::find($id);
+        return view('admin.post.edit')->with('post',$post)->with('category',$category);
     }
 
     /**

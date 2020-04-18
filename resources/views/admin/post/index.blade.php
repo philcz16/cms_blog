@@ -7,6 +7,7 @@
 
         <table class="table table-hover">
             <thead>
+            
                 <th>name</th>
                 <th>Edit</th>
                 <th>Delete</th>
