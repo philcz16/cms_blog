@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="featured">Featured Image</label>
                 <input type="file" class="form-control" value="{{$post->featured}}" name="featured">
-                <img src="{{$post->featured}}" alt="">
+                <img src="{{asset($post->featured)}}" alt="{{$post->title}}" width="50px" height="50px">
             </div>
             <div class="form-group">
                 <label for="content">Post</label>

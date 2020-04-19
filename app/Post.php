@@ -11,6 +11,7 @@ class Post extends Model
         'title', 'content', 'category_id', 'featured', 'slug'
     ];
 
+
     protected $dates = ['deleted_at'];
 
     public function category(){

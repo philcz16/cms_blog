@@ -90,7 +90,7 @@
                             <a href="{{route('post.create')}}">Create new post</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{route('posts')}}">View posts</a>
+                            <a href="{{route('posts')}}">All posts</a>
                         </li>
                     </ul>
                 </div>
